@@ -20,7 +20,6 @@ export default {
 		})
 	},
 	post(url,params) {
-		// console.log(params)
 		return new Promise((resolve, reject) => {
 			instance.post(url,params)
 			.then(({data}) => resolve(data)) 

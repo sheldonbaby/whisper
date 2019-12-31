@@ -1,11 +1,11 @@
 <template>
 	<div class='wrap' v-bgImage='logBg'>
 		<div></div>
-		<div class="logo">
+		<div class="logo" :class='{active: showSign}'>
 			<h1>Hi, Whisper..</h1>
-			<span>go start !</span>
+			<span @click='showSign=true'>go start !</span>
 		</div>
-		<div class="sign">
+		<div class="sign" v-show='showSign'>
 			<div class="title">
 				<span :class='{active: islog}' @click='onSwitch(true)'>登录</span>
 				<span> | </span>
@@ -73,6 +73,7 @@ export default {
 		return {
 			logBg,
 			islog: true,
+			showSign: false,
 			form: {
 				name: '',
 				pass: '',
@@ -120,7 +121,22 @@ export default {
 			}
 			api.login(params)
 			.then(data => {
-				console.log(data)
+				if(data.code === 0) {
+					this.$message({
+						message: '登录成功',
+						type: 'success'
+					});
+				}else if(data.code === -1) {
+					this.$message({
+						message: data.data,
+						type: 'success'
+					});
+				}else {
+					this.$message({
+						message: '登录失败',
+						type: 'error'
+					});
+				}
 			})
 		},
 		regist() {
@@ -137,6 +153,8 @@ export default {
 						duration: 5000,
 						type: 'success'
 					});
+					this.onSwitch(true)
+					this.form.name = data.data
 				}else if(data.code === 1) {
 					this.$message({
 						message: '该账号已经存在，请直接登录',
@@ -163,8 +181,12 @@ export default {
     position: relative;
 }
 .logo {
-	margin-top: 10%;
-	transition: .5s;
+	// margin-top: 20%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-120%);
+	transition: 1s;
 	color: white;
 	h1 {		
 		font-size: 45px;
@@ -173,7 +195,7 @@ export default {
 	span {
 		font-size: 28px;
 		cursor: pointer;
-		animation: flick 1.8s infinite;
+		animation: flick 1.6s infinite;
 	}
 	span:hover {
 		-webkit-animation-play-state: paused;
@@ -181,14 +203,14 @@ export default {
 	}
 }
 .logo.active {
-	transform: translateY(-100%);
+	transform: translate(-50%,-320%);
 }
 @keyframes flick {
 	0% {
 		opacity: 1;
 	}
 	50% {
-		opacity: .3;
+		opacity: .4;
 	}
 	100% {
 		opacity: 1;
@@ -204,6 +226,7 @@ export default {
 	transform: translate(-50%,-50%);
 	border-radius: 15px;
 	padding: 20px;
+	animation: move 1s;
 	.title {
 		padding: 0 80px;
 		width: 100%;
@@ -234,6 +257,27 @@ export default {
 		font-size: 18px;
 		cursor: pointer;
 		outline:none;
+	}
+}
+@keyframes move {
+	0% {
+		left: 0;
+	}
+	30% {
+		left: 50%;
+		transform: translate(-50%,-50%);
+	}
+	45% {
+		transform: translate(-47%,-47%)
+	}
+	60% {
+		transform: translate(-53%,-53%)
+	}
+	75% {
+		transform: translate(-48%,-48%)
+	}
+	90% {
+		transform: translate(-52%,-52%)
 	}
 }
 </style>

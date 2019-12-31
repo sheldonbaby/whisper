@@ -67,10 +67,26 @@ const regist = (params) => {
 //用户登录
 const login = (params) => {
 	return new Promise((resolve,reject) => {
-		
+		baseModel.users.find({
+			$or: [{"name": params.name}, {"code": params.name}]
+		})
+		.then((doc) => {
+			if(doc.length) {
+				let pass = doc[0].pass
+				if(pass === params.pass) {
+					resolve({code:0, data: { name: params.name}})
+				}else {
+					resolve({code: -1})
+				}
+			}else {
+				resolve({code: -2})
+			}
+		})
+		.catch(err => reject({code: -3,data: err}))
 	})
 }
 
 module.exports = {
-	regist
+	regist,
+	login
 }
