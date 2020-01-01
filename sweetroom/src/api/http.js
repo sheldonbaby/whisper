@@ -1,7 +1,9 @@
 import axios from 'axios'
 
 const instance = axios.create({
-	baseURL: 'http://127.0.0.1:3003'
+    baseURL: '/'
+    // baseURL: 'http://127.0.0.1:3003',
+    // withCredentials: true
 })
 
 // http.interceptors.response.use(

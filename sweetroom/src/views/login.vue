@@ -125,7 +125,8 @@ export default {
 					this.$message({
 						message: '登录成功',
 						type: 'success'
-					});
+                    });
+                    this.$store.dispatch('getUserInfo')
 				}else if(data.code === -1) {
 					this.$message({
 						message: data.data,
@@ -203,7 +204,7 @@ export default {
 	}
 }
 .logo.active {
-	transform: translate(-50%,-320%);
+	transform: translate(-50%,-250%);
 }
 @keyframes flick {
 	0% {
@@ -226,7 +227,7 @@ export default {
 	transform: translate(-50%,-50%);
 	border-radius: 15px;
 	padding: 20px;
-	animation: move 1s;
+	animation: move 1.1s;
 	.title {
 		padding: 0 80px;
 		width: 100%;
