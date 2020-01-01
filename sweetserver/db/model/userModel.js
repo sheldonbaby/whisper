@@ -74,19 +74,48 @@ const login = (params) => {
 			if(doc.length) {
 				let pass = doc[0].pass
 				if(pass === params.pass) {
-					resolve({code:0, data: { name: params.name}})
+					resolve({code:0, data: { name: doc[0].name}})
 				}else {
-					resolve({code: -1})
+					resolve({code: -1}) //密码错误
 				}
 			}else {
-				resolve({code: -2})
+				resolve({code: -2}) //没有该用户
 			}
 		})
 		.catch(err => reject({code: -3,data: err}))
 	})
 }
 
+// 获取用户信息
+const getUserInfo = (params) => {
+    return new Promise((resolve,reject) => {
+        if(params.id) {
+            baseModel.users.find({_id: params.id})
+            .then()
+            .catch()
+        }else {
+            baseModel.users.find({name: params.name})
+            .then(doc => {
+                if(doc.length) {
+                    const info = {name:doc[0].name, nickname: doc[0].nickname, signature: doc[0].signature, code: doc[0].code}
+                    resolve({
+                        code: 0,
+                        info,
+                    })
+                }else {
+                    resolve({code:-1})
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                reject({code:-2})
+            })
+        }
+    })
+}
+
 module.exports = {
 	regist,
-	login
+    login,
+    getUserInfo
 }

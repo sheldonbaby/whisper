@@ -7,15 +7,15 @@ let userSchema = mongoose.Schema({
 	// photo: {type: String, default: '/img/picture.png'}, // 默认头像
 	signature: { type: String, default: '这个人很懒，暂时没有签名哦！' },
 	nickname: { type: String, default: ''},
-	// email: { type: String, default: '' },
-	// province: { type: Object, default: {name: "北京市", value: "110000"} }, // 省
-	// city: { type: Object, default: {name: "市辖区", value: "110100"} }, // 市
-	// town: { type: Object, default: {name: "海淀区", value: "110108"} }, // 县
-	// sex: { type: String, default: '3' }, // 0 男 1 女 3 保密
-	// bubble: { type: String, default: 'whisper' }, // 气泡
-	// chatColor: { type: String, default: '#ffffff' }, // 聊天文字颜色
-	// bgOpa: { type: Number, default: 0.2 }, // 聊天框透明度
-	// projectTheme: { type: String, default: 'vchat' }, // 项目主题
+	email: { type: String, default: '' },
+	province: { type: Object, default: {name: "XX省", value: "110000"} }, // 省
+	city: { type: Object, default: {name: "市辖区", value: "110100"} }, // 市
+	town: { type: Object, default: {name: "XX", value: "110108"} }, // 县
+	sex: { type: String, default: '3' }, // 0 男 1 女 3 保密
+	bubble: { type: String, default: 'whisper' }, // 气泡
+	chatColor: { type: String, default: '#ffffff' }, // 聊天文字颜色
+	bgOpa: { type: Number, default: 0.2 }, // 聊天框透明度
+	projectTheme: { type: String, default: 'whisper' }, // 项目主题
 	// wallpaper: { type: String, default: '/img/wallpaper.jpg' }, // 聊天壁纸
 	registTime: { type: Date, default: Date.now() }, // 注册时间
 	// lastLoginTime: { type: Date, default: Date.now() }, // 最后一次登录

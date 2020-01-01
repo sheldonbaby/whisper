@@ -3,7 +3,7 @@ const router = express.Router()
 const User = require('../db/model/userModel')
 
 router.post('/regist', (req,res) => {
-	let params = req.body
+	const params = req.body
 	//callback实现
 	/*
 	User.regist(params, (data) => {
@@ -36,10 +36,11 @@ router.post('/regist', (req,res) => {
 })
 
 router.post('/login', (req,res) => {
-	let params = req.body
+	const params = req.body
 	User.login(params)
 	.then((data) => {
 		if(data.code === 0) {
+            req.session.name = data.data.name
 			res.json(data)
 		}else {
 			res.json({
@@ -47,6 +48,23 @@ router.post('/login', (req,res) => {
                 data : '用户名或密码错误'
             })
 		}
+	})
+	.catch(err => {
+		res.json(err)
+	})
+})
+
+router.post('/getUserInfo', (req,res) => {
+    let params = req.body
+    let obj = {
+        ...params
+    }
+    if(!params.id) {
+       obj.name = req.session.name
+    }
+	User.getUserInfo(obj)
+	.then((data) => {
+		res.json(data)
 	})
 	.catch(err => {
 		res.json(err)
