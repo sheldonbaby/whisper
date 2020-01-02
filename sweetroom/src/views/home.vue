@@ -8,7 +8,9 @@
                     <p>{{item.name}}</p>
 				</li>
 			</ul>
-			<div class="w-sub"></div>
+			<div class="w-sub">
+                <router-view></router-view>
+            </div>
 		</div>
 	</div>
 </template>

@@ -13,7 +13,15 @@ const routes = [
 	{
 		path: '/home',
 		name: 'home',
-		component: _import('home')
+        component: _import('home'),
+        redirect: '/home/mainPage',
+        children: [
+            {
+                path: 'mainPage',
+                name: 'mainPage',
+                component: _import('mainPage')
+            }
+        ]
 	}
 ]
 
