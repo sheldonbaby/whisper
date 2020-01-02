@@ -3,7 +3,7 @@
 		<div></div>
 		<div class="logo" :class='{active: showSign}'>
 			<h1>Hi, Whisper..</h1>
-			<span @click='showSign=true'>go start !</span>
+			<span @click='showDia'>go start !</span>
 		</div>
 		<div class="sign" v-show='showSign'>
 			<div class="title">
@@ -14,12 +14,12 @@
 			<div class="body">
 				<el-form ref='form' :model="form" :rules='signRules'>
 					<el-form-item prop='name'> 
-						<el-input placeholder="账号" v-model="form.name">
+						<el-input placeholder="账号" v-model="form.name" ref='name'>
 							<i class="iconfont icon-zhanghao" slot="prepend"></i>
 						</el-input>
 					</el-form-item>
 					<el-form-item prop='pass'>
-						<el-input placeholder="密码" v-model="form.pass" type='password'>
+						<el-input placeholder="密码" v-model="form.pass" type='password' @keyup.native.enter='enter'>
 							<i class="iconfont icon-mima3" slot="prepend"></i>
 						</el-input>
 					</el-form-item>
@@ -75,8 +75,8 @@ export default {
 			islog: true,
 			showSign: false,
 			form: {
-				name: '',
-				pass: '',
+				name: 'reggie',
+				pass: 'reggie',
 				regcode: '',
                 repass: ''
 			},
@@ -99,6 +99,7 @@ export default {
 	methods: {
 		onSwitch(flag) {
 			this.$refs['form'].resetFields()
+			this.$refs['name'].focus()
 			this.islog = flag
 		},
 		enter() {
@@ -126,7 +127,7 @@ export default {
 						message: '登录成功',
 						type: 'success'
                     });
-                    this.$store.dispatch('getUserInfo')
+					this.$store.dispatch('getUserInfo', this)
 				}else if(data.code === -1) {
 					this.$message({
 						message: data.data,
@@ -169,6 +170,12 @@ export default {
 					});
 				}
 			})
+		},
+		showDia() {
+			this.showSign = true
+			setTimeout(() => {
+				this.$refs['name'].focus()
+			}, 0);
 		}	
 	}
 }
@@ -189,6 +196,7 @@ export default {
 	transform: translate(-50%,-120%);
 	transition: 1s;
 	color: white;
+	text-align: center;
 	h1 {		
 		font-size: 45px;
 		margin-bottom: 20px;
