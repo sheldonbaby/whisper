@@ -74,7 +74,7 @@ export default {
 	}
 	.w-sub {
 		width: calc(100% - 120px);
-		min-height: 500px;
+		min-height: 600px;
 	}
 }
 </style>
