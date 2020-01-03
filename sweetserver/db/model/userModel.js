@@ -97,7 +97,7 @@ const getUserInfo = (params) => {
             baseModel.users.find({name: params.name})
             .then(doc => {
                 if(doc.length) {
-                    const info = {name:doc[0].name, nickname: doc[0].nickname, signature: doc[0].signature, code: doc[0].code}
+                    const info = {name:doc[0].name, nickname: doc[0].nickname, signature: doc[0].signature, code: doc[0].code, conversationsList: doc[0].conversationsList,province: doc[0].province, city: doc[0].city, town: doc[0].town,photo: doc[0].photo,cover: doc[0].cover,id: doc[0]._id}
                     resolve({
                         code: 0,
                         info,
@@ -114,8 +114,25 @@ const getUserInfo = (params) => {
     })
 }
 
+//获取官方账号信息
+const getWhisperInfo = () => {
+	return new Promise((resolve,reject) => {
+		baseModel.users.find({name: 'whisper'})
+		.then(doc => {
+			if(doc.length) {
+				const info = {name: doc[0].name, nickname: doc[0].nickname, signature: doc[0].signature, id: doc[0]._id}
+				resolve({code:0,info})
+			}else {
+				resolve({code:-1})
+			}
+		})
+		.catch(err => reject(err))
+	})
+}
+
 module.exports = {
 	regist,
     login,
-    getUserInfo
+	getUserInfo,
+	getWhisperInfo
 }

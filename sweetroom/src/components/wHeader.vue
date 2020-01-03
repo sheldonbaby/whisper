@@ -18,7 +18,8 @@
 				</el-popover>
 			</div>
 			<div class='w-photo' v-popover:popphoto>
-				<img class='avatar' src="../assets/3.jpg" alt="">
+				<!-- <img class='avatar' src="../assets/3.jpg" alt=""> -->
+				<img class='avatar' :src="avatar" alt="">
 				<el-popover
 					trigger="hover"
 					width='20'
@@ -69,11 +70,14 @@ export default {
 					icon: 'icon-shezhi1',
 					link: '/mySetting'
 				}
-			],
+			]
 		}
 	},
 	computed: {
-		...mapState(['user'])
+		...mapState(['user']),
+		avatar() {
+			return 'http://localhost:3003' + this.$store.state.user.photo
+		}
 	}
 }
 </script>

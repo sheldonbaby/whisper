@@ -38,7 +38,7 @@ router.post('/regist', (req,res) => {
 router.post('/login', (req,res) => {
 	const params = req.body
 	User.login(params)
-	.then((data) => {
+	.then(data => {
 		if(data.code === 0) {
             req.session.name = data.data.name
 			res.json(data)
@@ -63,12 +63,16 @@ router.post('/getUserInfo', (req,res) => {
        obj.name = req.session.name
     }
 	User.getUserInfo(obj)
-	.then((data) => {
-		res.json(data)
-	})
+	.then(data => res.json(data))
 	.catch(err => {
-		res.json(err)
+		res.send(err)
 	})
+})
+
+router.post('/getWhisperInfo', (req,res) => {
+	User.getWhisperInfo()
+	.then(data => res.json(data))
+	.catch(err => res.send(err))
 })
 
 module.exports = router

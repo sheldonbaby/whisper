@@ -9,5 +9,8 @@ export default {
     },
     getUserInfo(params) {
         return http.post('/v/user/getUserInfo', params)
-    }
+	},
+	getWhisperInfo() {
+		return http.post('/v/user/getWhisperInfo')
+	}
 }
