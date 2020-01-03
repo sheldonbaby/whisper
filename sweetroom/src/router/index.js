@@ -19,7 +19,28 @@ const routes = [
             {
                 path: 'mainPage',
                 name: 'mainPage',
-                component: _import('mainPage')
+				component: _import('mainPage'),
+				redirect: 'mainPage/friends',
+				children: [
+					{
+						path: 'friends',
+						name: 'friends',
+						component: _import('friendsWrap'),
+						redirect: 'friends/own/',
+						children: [
+							{
+								path: 'own',
+								name: 'ownFriend',
+								component: _import('friendsMoudle/myFriends')
+							}
+						]
+					},
+					{
+						path: 'group',
+						name: 'group',
+						component: _import('groupWrap'),
+					}
+				]
             }
         ]
 	}

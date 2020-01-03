@@ -63,7 +63,7 @@ export default {
 		box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.1);
 		li {
 			cursor: pointer;
-			color: rgb(206, 204, 204);
+			color: rgb(218, 216, 216);
 			padding: 14px;
 			i {
 				font-size: 32px;
