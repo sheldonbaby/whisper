@@ -3,8 +3,10 @@
 		<span v-if='title' class="title">
 			{{title}}
 		</span>
-		<span v-if='back'></span>
-		<div class="slot"></div>
+		<span v-if='back' class="back" @click='goBack'> < </span>
+		<div class="iconSlot">
+			<slot></slot>
+		</div>
 	</div>
 </template>
 
@@ -18,6 +20,11 @@ export default {
 		back: {
 			default: ''
 		}
+	},
+	methods: {
+		goBack() {
+
+		}
 	}
 }
 </script>
@@ -28,10 +35,19 @@ export default {
 	height: 42px;
 	background: #97d6d6;
 	color: white;
+	text-align: center;
 	.title {
 		font-size: 18px;
+		line-height: 42px;		
+	}
+	.back {
+		font-size: 28px;
 		line-height: 42px;
-		text-align: center;
+	}
+	.iconSlot {
+		position: absolute;
+		right: 15px;
+		top: 12px;
 	}
 }
 </style>

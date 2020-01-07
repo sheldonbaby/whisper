@@ -18,5 +18,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.friendsWrap {
+	width: 100%;
+	height: 100%;
+}
 </style>

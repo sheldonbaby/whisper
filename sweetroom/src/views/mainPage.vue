@@ -66,6 +66,10 @@ export default {
 	box-shadow: 1px 1px 2px #dbdbdb;
 	border-radius: 4px;
 	position: relative;
+	.leftContent {
+		width: 100%;
+		height: calc(100% - 54px);
+	}
 	.leftfoot {
 		position: absolute;
 		bottom: 0;
