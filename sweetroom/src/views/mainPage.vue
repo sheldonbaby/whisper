@@ -58,7 +58,7 @@ export default {
 }
 .mainLeft {
 	width: 28%;
-	min-width: 280px;
+	min-width: 300px;
 	max-width: 320px;
 	height: 100%;
 	min-height: 600px;
@@ -89,7 +89,7 @@ export default {
 				padding: 5px;
 				box-sizing: border-box;
 				a {
-					color: #e2e1e1;
+					color: #a7a6a6;
 				}
 				a.active {
 					color: #89cece;

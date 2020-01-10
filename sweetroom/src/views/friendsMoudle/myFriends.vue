@@ -19,9 +19,11 @@
 					<b>{{user.name}} 
 						<span> ({{user.nickname}}) </span>
 					</b>
-					<!-- <span>reggie(xxxxx)</span> -->
 					<i class="el-icon-arrow-right"></i>
 				</div>
+			</div>
+			<div class="myfriend" v-if='friendList.length'>
+
 			</div>
 		</div>
 	</div>
@@ -30,10 +32,19 @@
 <script>
 import panelHeader from '../../components/panelHeader'
 import { mapState } from 'vuex'
+import api from '../../api'
 
 export default {
 	components: {
 		panelHeader
+	},
+	created() {
+		this.getFriendList()
+	},
+	data() {
+		return {
+			friendList: []
+		}
 	},
 	computed: {
 		...mapState(['user','conversationsList']),
@@ -41,6 +52,11 @@ export default {
 			return 'http://localhost:3003' + this.$store.state.user.photo
 		}
 	},
+	methods: {
+		getFriendList() {
+			api.getFriendList()
+		}
+	}
 }
 </script>
 
@@ -81,6 +97,9 @@ export default {
 			span {
 				font-weight: normal;
 				font-size: 14px;
+			}
+			i {
+				margin-top: 2px;
 			}
 		}
 

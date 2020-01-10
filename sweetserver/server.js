@@ -2,12 +2,13 @@
  * @Author: sheldon 
  * @Date: 2019-12-27 17:30:55 
  * @Last Modified by: sheldon
- * @Last Modified time: 2020-01-03 14:15:40
+ * @Last Modified time: 2020-01-08 11:20:01
  */
 const express = require('express')
 const app = express()
 const db = require('./db/connect')
 const user = require('./router/user')
+const friends = require('./router/frinends')
 const bodyParser = require('body-parser')	//解析post body
 // const cors = require('cors')	//跨域
 const session = require('express-session')      //设置 session
