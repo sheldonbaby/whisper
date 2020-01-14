@@ -23,8 +23,28 @@
 				</div>
 			</div>
 			<div class="myfriend" v-if='friendList.length'>
-
+			<!-- <div class="myfriend"> -->
+				<div class="friendTitle" @click='showList'>
+					<span>我的好友({{friendList.length}})</span>
+					<i class="el-icon-arrow-right"></i>
+				</div>
+				<ul>
+					<li v-for="(item,idx) in friendList" :key='idx'>
+						<a href="javascript:;">
+                            <img :src="IMG_URL + v.photo" alt="">
+                        </a>
+                        <div>
+                            <!-- <p>
+                                <span class="vchat-line1" :title="v.nickname">{{v.nickname}}</span>
+                            </p>
+                            <p>
+                                <span :title="v.signature" class="vchat-line1">{{v.signature}}</span>
+                            </p> -->
+                        </div>
+					</li>
+				</ul>
 			</div>
+			<no-data></no-data>
 		</div>
 	</div>
 </template>
@@ -54,7 +74,19 @@ export default {
 	},
 	methods: {
 		getFriendList() {
-			api.getFriendList()
+			let params = {
+				id: this.user.id
+			}
+			api.getFriendList(params)
+				.then(res => {
+					if(res.code === 0) {
+						this.friendList = res.data
+					}
+				}
+			)
+		},
+		showList() {
+
 		}
 	}
 }
@@ -83,6 +115,7 @@ export default {
 		box-sizing: border-box;
 		justify-content: space-between;
 		align-items: center;
+		background: url('../../../public/1.jpg');
 		img {
 			width: 40px;
 			height: 40px;
@@ -103,6 +136,24 @@ export default {
 			}
 		}
 
+	}
+	.myfriend {
+		.friendTitle {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 10px;
+			box-sizing: border-box;
+			cursor: pointer;
+			span {
+				font-size: 18px;
+				font-weight: bold;
+			}
+			i {
+				color: rgb(129, 128, 128);
+			}
+		}
 	}
 }
 </style>

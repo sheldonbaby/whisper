@@ -2,13 +2,13 @@
  * @Author: sheldon 
  * @Date: 2019-12-27 17:30:55 
  * @Last Modified by: sheldon
- * @Last Modified time: 2020-01-08 11:20:01
+ * @Last Modified time: 2020-01-14 15:21:00
  */
 const express = require('express')
 const app = express()
 const db = require('./db/connect')
 const user = require('./router/user')
-const friends = require('./router/frinends')
+const friends = require('./router/friends')
 const bodyParser = require('body-parser')	//解析post body
 // const cors = require('cors')	//跨域
 const session = require('express-session')      //设置 session
@@ -27,6 +27,7 @@ app.use(session({
 app.use(express.static('public'))
 
 app.use('/v/user', user)
+app.use('/v/friends', friends)
 
 app.listen(3003, () => {
 	console.log('start')
