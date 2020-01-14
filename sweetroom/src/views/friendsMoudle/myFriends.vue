@@ -115,7 +115,7 @@ export default {
 		box-sizing: border-box;
 		justify-content: space-between;
 		align-items: center;
-		background: url('../../../public/1.jpg');
+		background: url('../../assets/1.jpg');
 		img {
 			width: 40px;
 			height: 40px;
