@@ -20,7 +20,7 @@
 	img {
 		width: 60%;
 		height: 60%;
-		margin:20px;
+		margin:50px 0 20px 0;
 	}
 }
 </style>

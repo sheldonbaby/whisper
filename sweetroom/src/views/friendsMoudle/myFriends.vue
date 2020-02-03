@@ -44,7 +44,11 @@
 					</li>
 				</ul>
 			</div>
-			<no-data></no-data>
+			<no-data class="noFriend">
+				<p>还没有好友哦，去
+					<router-link to="/home/mainPage/friends/search">添加</router-link>
+				</p>
+			</no-data>
 		</div>
 	</div>
 </template>
@@ -153,6 +157,15 @@ export default {
 			i {
 				color: rgb(129, 128, 128);
 			}
+		}
+	}
+	.noFriend {
+		p {
+			color: black;
+			font-size: 15px;
+		}
+		a {
+			color: #89cece;
 		}
 	}
 }

@@ -32,6 +32,11 @@ const routes = [
 								path: 'own',
 								name: 'ownFriend',
 								component: _import('friendsMoudle/myFriends')
+							},
+							{
+								path: 'search',
+								name: 'searchFriend',
+								component: _import('friendsMoudle/searchFriend')
 							}
 						]
 					},

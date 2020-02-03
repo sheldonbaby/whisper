@@ -1,9 +1,9 @@
 <template>
 	<div class='panelHeader'>
+		<i class="el-icon-arrow-left" v-if='back' @click='goBack'></i>
 		<span v-if='title' class="title">
 			{{title}}
 		</span>
-		<span v-if='back' class="back" @click='goBack'> < </span>
 		<div class="iconSlot">
 			<slot></slot>
 		</div>
@@ -23,7 +23,8 @@ export default {
 	},
 	methods: {
 		goBack() {
-
+			// this.$router.go(-1);
+			this.$router.push(this.back)
 		}
 	}
 }
@@ -36,13 +37,15 @@ export default {
 	background: #97d6d6;
 	color: white;
 	text-align: center;
-	.title {
-		font-size: 18px;
-		line-height: 42px;		
-	}
-	.back {
-		font-size: 28px;
+	font-size: 18px;
+	.el-icon-arrow-left {
+		float: left;
 		line-height: 42px;
+		margin-left: 10px;
+		cursor: pointer;
+	}
+	.title {
+		line-height: 42px;		
 	}
 	.iconSlot {
 		position: absolute;
